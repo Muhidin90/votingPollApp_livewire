@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class pool extends Model
 {
     use HasFactory;
+    protected $fillable = ['title'];
     public function option():HasMany
     {
         return $this->hasMany(option::class);

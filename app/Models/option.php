@@ -10,6 +10,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class option extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['name'];
+    
     public function pool():BelongsTo{
         return $this->belongsTo(pool::class);
     }
