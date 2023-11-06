@@ -13,11 +13,11 @@ class option extends Model
 
     protected $fillable = ['name'];
     
-    public function pool():BelongsTo{
-        return $this->belongsTo(pool::class);
+    public function poll():BelongsTo{
+        return $this->belongsTo(poll::class);
     }
 
-    public function vote():HasMany 
+    public function votes():HasMany 
     {
         return $this->hasMany(vote::class);
     }

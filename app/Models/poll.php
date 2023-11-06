@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class pool extends Model
+class poll extends Model
 {
     use HasFactory;
     protected $fillable = ['title'];
-    public function option():HasMany
+    public function options():HasMany
     {
         return $this->hasMany(option::class);
     }

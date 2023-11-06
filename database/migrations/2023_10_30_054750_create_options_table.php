@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\pool;
+use App\Models\poll;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('name'); 
             $table->timestamps();
-            $table->foreignIdFor(pool::class)->constrained();
+            $table->foreignIdFor(poll::class)->constrained();
             
         });
     }

@@ -2,13 +2,19 @@
 
 namespace App\Livewire;
 
-use App\Models\pool;
+use App\Models\poll;
 use Livewire\Component;
 
 class CreatePoll extends Component
 {
     public $title;
     public $options = [];
+
+    // protected $rules =;
+
+    protected $messages =[
+        'options.*'=>'The option cant be empty'
+    ];
 
     public function render()
     {
@@ -32,11 +38,17 @@ class CreatePoll extends Component
 
     public function createPoll()
     {
-        pool::create([
+        $this->validate([
+            'title' => 'required|min:3|max:255',
+            'options' => 'array|required|min:1|max:10',
+            'options.*' => 'required|min:1|max:255'
+        ]);
+
+        poll::create([
             'title' => $this->title
-        ])->option()->createMany(
+        ])->options()->createMany(
                 collect($this->options)
-                    ->map(fn($option) => ['name' => 'option'])
+                    ->map(fn($option) => ['name' => $option])
                     ->all()
             );
 
@@ -48,5 +60,7 @@ class CreatePoll extends Component
         // }
 
         $this->reset(['title', 'options']);
+
+        $this->dispatch('poll-Created');
     }
 }
